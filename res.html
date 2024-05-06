@@ -35,11 +35,19 @@
             display: inline-block;
             background-color: #41699c;
             color: white;
-            padding: 10px 20px;
+            padding: 10px 15px; /* Размеры кнопки */
+            border: none;
+            border-radius: 5px;
             text-align: center;
             text-decoration: none;
             font-size: 16px;
             cursor: pointer;
+        }
+
+        #documentNumber {
+            width: 38%; /* Увеличенная ширина инпута */
+            padding: 10px; /* Увеличенная высота инпута */
+            margin-bottom: 10px;
         }
 
         footer {
@@ -89,6 +97,11 @@
             .footer{
                 display: none;
             }
+            #documentNumber {
+            width: 60%; /* Увеличенная ширина инпута */
+            padding: 10px; /* Увеличенная высота инпута */
+            margin-bottom: 10px;
+        }
         }
     </style>
 </head>
@@ -103,13 +116,27 @@
         </div>
     </header>
 
-    <div class="container">
+    <!-- <div class="container">
         <div class="title">Данные о готовности разрешения на временное проживание</div>
         <div class="info">По результатам рассмотрения заявления принято решение</div>
         <div class="info">Дата решения: 23.04.2024</div>
         <div class="info">Последнее обновление базы: 01.04.2024</div>
         <div class="info">Вы можете узнать о решении в приемные часы</div>
         <a href="https://xn--b1aew.xn--p1ai/%D1%81%D0%B5%D1%80%D0%B2%D0%B8%D1%81%D1%8B-%D0%B3%D1%83%D0%B2%D0%BC" class="button">ЗАПИСАТЬСЯ НА ПРИЕМ</a>
+    </div> -->
+
+    <div class="container">
+        <div class="title" id="mainText">
+            Внимание!
+            Ответ на Ваш запрос носит справочный характер. Для получения юридически значимой официальной информации рекомендуем обратиться в территориальное подразделение МВД России.
+            Нажимая на кнопку "Отправить запрос" Вы соглашаетесь на передачу и обработку своих персональных данных МВД России в соответствии с Федеральным законом РФ от 27 июля 2006 года № 152-ФЗ «О персональных данных».
+        </div>
+        <form id="documentForm">
+            <input type="text" id="documentNumber" placeholder="Введите номер документа">
+            <button type="submit" class="button" id="sumbitButton">Отправить запрос</button>
+        </form>
+
+        <div id="result"></div>
     </div>
 
 
@@ -118,5 +145,31 @@
     </footer>
 
     <footer data-v-70933f71="" class="q-footer q-layout__section--marginal absolute-bottom footer flex justify-center"><div data-v-70933f71="" class="footer-content"><span data-v-70933f71="">© 2024 Главное управление по вопросам миграции МВД России</span></div></footer>
+
+    <script>
+
+        document.getElementById('documentForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            document.getElementById('documentNumber').style.display = 'none';
+            document.getElementById('sumbitButton').style.display = 'none';
+            document.getElementById('mainText').style.display = 'none';
+
+            var documentNumber = document.getElementById('documentNumber').value;
+            var resultContainer = document.getElementById('result');
+            var currentDate = new Date().toLocaleDateString('ru-RU');
+            var resultText = `
+                <div class="title">Результат запроса</div>
+                <div class="info">Соответствие документа и адреса: По Вашему запросу о действительности документа "регистрации по месту жительства" № ${documentNumber} получен ответ о том, что данный документ "Среди недействительных не значиться".</div>
+                <div class="info">Параметры запроса</div>
+                <div class="info" >Поиск был произведен по следующим параметрам, указанным Вами параметрам:</div>
+                <div class="info" >Номер документа: ${documentNumber}</div>
+                <div class="info">Последнее обновление базы: ${currentDate}</div>
+                <a href="https://xn--b1aew.xn--p1ai/%D1%81%D0%B5%D1%80%D0%B2%D0%B8%D1%81%D1%8B-%D0%B3%D1%83%D0%B2%D0%BC" class="button">Другой запрос</a>
+            `;
+            resultContainer.innerHTML = resultText;
+            
+        });
+
+    </script>
 </body>
 </html>
