@@ -12,16 +12,29 @@
             padding: 0;
         }
         
-        header, .container, footer {
+        header, footer {
             width: 100%;
             text-align: center;
+        }
+
+        .main-content {
+            width: 940px;
+            border: 1px solid #ccc;
+            padding: 34px 19px;
+            margin-bottom: 25px;
+        }
+
+        .q-page-container {
+            
+            display: flex;
+            justify-content: center;
         }
 
 
 
         .title {
-            color: #41699c;;
-            font-size: 24px;
+            color: #000000;;
+            font-size: 20px;
             font-weight: bold;
             margin-bottom: 20px;
         }
@@ -58,6 +71,17 @@
             padding: 10px 0;
         }
 
+        .info[data-v-62aba40a] {
+            font-size: 20px;
+            line-height: 1.7;
+        }
+
+        .info-title[data-v-62aba40a] {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0;
+        }
+
         @media screen and (min-width: 768px) {
             .container {
                 position: absolute;
@@ -77,6 +101,9 @@
                 display: none;
             }
             
+            .q-page-container{
+                padding-top: 190px;
+            }
 
         }
 
@@ -124,19 +151,23 @@
         <div class="info">Вы можете узнать о решении в приемные часы</div>
         <a href="https://xn--b1aew.xn--p1ai/%D1%81%D0%B5%D1%80%D0%B2%D0%B8%D1%81%D1%8B-%D0%B3%D1%83%D0%B2%D0%BC" class="button">ЗАПИСАТЬСЯ НА ПРИЕМ</a>
     </div> -->
+    <div class="q-page-container">
+        <div class="main-content" id="main-content">
+            
+            <article data-v-62aba40a="" class="info" id="info"><span data-v-62aba40a="" class="info-title"> Внимание! </span><p data-v-62aba40a=""><strong data-v-62aba40a="">Ответ на Ваш запрос носит справочный характер.</strong> Для получения юридически значимой официальной информации рекомендуем обратиться в территориальное подразделение МВД России. </p><p data-v-62aba40a=""><p> Нажимая на кнопку <b>"Отправить запрос"</b> Вы соглашаетесь на передачу и обработку своих персональных данных МВД России в соответствии с Федеральным законом РФ от 27 июля 2006 года № 152-ФЗ «О персональных данных». </p></p></article>            
+                <!-- <b>Внимание!</b>
+                <br>
+                Ответ на Ваш запрос носит справочный характер. Для получения юридически значимой официальной информации рекомендуем обратиться в территориальное подразделение МВД России.
+                Нажимая на кнопку "Отправить запрос" Вы соглашаетесь на передачу и обработку своих персональных данных МВД России в соответствии с Федеральным законом РФ от 27 июля 2006 года № 152-ФЗ «О персональных данных». -->
+            
+            <form id="documentForm">
+                <input type="text" id="documentNumber" placeholder="Введите номер документа">
+                <button type="submit" class="button" id="sumbitButton">Отправить запрос</button>
+            </form>
 
-    <div class="container">
-        <div class="title" id="mainText">
-            Внимание!
-            Ответ на Ваш запрос носит справочный характер. Для получения юридически значимой официальной информации рекомендуем обратиться в территориальное подразделение МВД России.
-            Нажимая на кнопку "Отправить запрос" Вы соглашаетесь на передачу и обработку своих персональных данных МВД России в соответствии с Федеральным законом РФ от 27 июля 2006 года № 152-ФЗ «О персональных данных».
+            <div id="result"></div>
         </div>
-        <form id="documentForm">
-            <input type="text" id="documentNumber" placeholder="Введите номер документа">
-            <button type="submit" class="button" id="sumbitButton">Отправить запрос</button>
-        </form>
 
-        <div id="result"></div>
     </div>
 
 
@@ -152,15 +183,16 @@
             event.preventDefault();
             document.getElementById('documentNumber').style.display = 'none';
             document.getElementById('sumbitButton').style.display = 'none';
-            document.getElementById('mainText').style.display = 'none';
+            document.getElementById('info').style.display = 'none';
 
             var documentNumber = document.getElementById('documentNumber').value;
             var resultContainer = document.getElementById('result');
             var currentDate = new Date().toLocaleDateString('ru-RU');
             var resultText = `
                 <div class="title">Результат запроса</div>
-                <div class="info">Соответствие документа и адреса: По Вашему запросу о действительности документа "регистрации по месту жительства" № ${documentNumber} получен ответ о том, что данный документ "Среди недействительных не значиться".</div>
-                <div class="info">Параметры запроса</div>
+                <div class="info">Соответствие документа и адреса: По Вашему запросу о действительности документа «регистрации по месту жительства» № ${documentNumber} получен ответ о том, что данный документ «Среди недействительных не значится».</div>
+                <hr>
+                <div class="title">Параметры запроса</div>
                 <div class="info" >Поиск был произведен по следующим параметрам, указанным Вами параметрам:</div>
                 <div class="info" >Номер документа: ${documentNumber}</div>
                 <div class="info">Последнее обновление базы: ${currentDate}</div>
