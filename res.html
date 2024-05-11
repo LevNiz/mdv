@@ -109,6 +109,7 @@
             
             .q-page-container{
                 padding-top: 190px;
+                /* padding-bottom: 50px; */
             }
 
         }
@@ -194,12 +195,12 @@
             var currentDate = new Date().toLocaleDateString('ru-RU');
             var resultText = `
                 <div class="title">Результат запроса</div>
-                <div class="info">Соответствие документа и адреса: По Вашему запросу о действительности документа «регистрации по месту жительства» № ${documentNumber} получен ответ о том, что данный документ «Среди недействительных не значится».</div>
+                <div class="info">Соответствие документа и адреса:<br>По Вашему запросу о действительности документа «регистрации по месту жительства» № ${documentNumber} получен ответ о том, что данный документ <b>«Среди недействительных не значится»</b>.</div>
                 <hr>
                 <div class="title">Параметры запроса</div>
                 <div class="info" >Поиск был произведен по следующим параметрам, указанным Вами параметрам:</div>
-                <div class="info" >Номер документа: ${documentNumber}</div>
-                <div class="info">Последнее обновление базы: ${currentDate}</div>
+                <div class="info" >Номер документа: <b>${documentNumber}</b></div>
+                <div class="info">Последнее обновление базы: <b>${currentDate}</b></div>
                 <a href="https://xn--b1aew.xn--p1ai/%D1%81%D0%B5%D1%80%D0%B2%D0%B8%D1%81%D1%8B-%D0%B3%D1%83%D0%B2%D0%BC" class="button">Другой запрос</a>
             `;
             resultContainer.innerHTML = resultText;
